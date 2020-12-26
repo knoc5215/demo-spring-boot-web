@@ -22,7 +22,7 @@ class SampleControllerTest {
 
     @Test
     public void hello() throws Exception {
-        mockMvc.perform(get("/hello/jumen"))
+        this.mockMvc.perform(get("/hello/jumen"))
                 .andDo(print())
                 .andExpect(content().string("hello jumen"));
     }
@@ -42,7 +42,6 @@ class SampleControllerTest {
         Person person = new Person();
         person.setName("jumen");
         Person savedPerson = personRepository.save(person);
-        System.out.println(savedPerson.toString());
 
         this.mockMvc.perform(get("/jpaTest").param("id", savedPerson.getId().toString()))
                 .andDo(print())
