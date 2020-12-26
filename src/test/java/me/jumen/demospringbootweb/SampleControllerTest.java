@@ -34,4 +34,19 @@ class SampleControllerTest {
                 .andExpect(content().string("hello jumen"));
     }
 
+    @Autowired
+    PersonRepository personRepository;
+
+    @Test
+    public void jpaTest() throws Exception {
+        Person person = new Person();
+        person.setName("jumen");
+        Person savedPerson = personRepository.save(person);
+        System.out.println(savedPerson.toString());
+
+        this.mockMvc.perform(get("/jpaTest").param("id", savedPerson.getId().toString()))
+                .andDo(print())
+                .andExpect(content().string("hello jumen"));
+    }
+
 }

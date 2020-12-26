@@ -17,4 +17,9 @@ public class SampleController {
     public String helloRequestParam(@RequestParam("name") Person person) {
         return "hello " + person.getName();
     }
+
+    @GetMapping("/jpaTest")
+    public String jpaTest(@RequestParam("id") Person person) {
+        return "hello " + person.getName();
+    }
 }
